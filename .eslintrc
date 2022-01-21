@@ -14,11 +14,25 @@
 			{
 				"allowSingleExtends": true
 			}
-		]
+		],
+		"prettier/prettier": [
+            "error",
+            {
+                "trailingComma": "all",
+                "useTabs": true,
+                "bracketSpacing": true,
+                "printWidth": 100,
+                "tabWidth": 4,
+                "semi": true,
+                "singleQuote": true,
+                "endOfLine": "auto"
+            }
+        ]
 	},
 	"extends": [
 		"eslint:recommended",
 		"plugin:@typescript-eslint/eslint-recommended",
-		"plugin:@typescript-eslint/recommended"
+		"plugin:@typescript-eslint/recommended",
+		"plugin:prettier/recommended"
 	]
 }
