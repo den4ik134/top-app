@@ -1,6 +1,3 @@
-.wrapper {
-	margin-top: 40px;
-}
 
 .title {
 	display: grid;
@@ -16,4 +13,28 @@
 	align-items: baseline;
 	justify-items: left;
 	gap: 20px;
+}
+
+.seo h1 {
+	margin-bottom: 20px;
+
+	font-size: 26px;
+	font-weight: 500;
+	line-height: 35px;
+}
+
+.seo h2 {
+	margin-bottom: 20px;
+
+	font-size: 22px;
+	font-weight: 500;
+	line-height: 30px;
+}
+
+.seo h3 {
+	margin-bottom: 20px;
+
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 27px;
 }
