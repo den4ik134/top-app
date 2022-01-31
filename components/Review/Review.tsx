@@ -5,9 +5,8 @@ import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import styles from './Review.module.css';
 import { Rating } from "../Rating/Rating";
-import { Divider } from "../Divider/Divider";
 
-export const Revie = ({ review, className, ...props }: ReviewProps): JSX.Element => {
+export const Review = ({ review, className, ...props }: ReviewProps): JSX.Element => {
 	const { createdAt, name, title, description, rating } = review;
 	return (
 		<>
@@ -27,7 +26,6 @@ export const Revie = ({ review, className, ...props }: ReviewProps): JSX.Element
 					{description}
 				</div>
 			</div>
-			<Divider />
 		</>
 	);
 };

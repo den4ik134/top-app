@@ -9,7 +9,8 @@ import { Button } from "../Button/Button";
 import { declOfNum, numSplitter } from "../../helpers/helpers";
 import { Divider } from "../Divider/Divider";
 import Image from 'next/image';
-import { Revie } from "../Review/Review";
+import { Review } from "../Review/Review";
+import { ReviewForm } from "../ReviewForm/ReviewForm";
 
 export const Product = ({ product, className, ...props }: ProductProps): JSX.Element => {
 	const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
@@ -54,7 +55,7 @@ export const Product = ({ product, className, ...props }: ProductProps): JSX.Ele
 				<div
 					className={styles.tags}
 				>
-					{product.categories.map(c => <Tag id={c} className={styles.category} color='ghost'>{c}</Tag>)}
+					{product.categories.map(c => <Tag key={c} className={styles.category} color='ghost'>{c}</Tag>)}
 				</div>
 
 				<div className={styles.priceTitle}>цена</div>
@@ -113,7 +114,13 @@ export const Product = ({ product, className, ...props }: ProductProps): JSX.Ele
 				[styles.opened]: isReviewOpened,
 				[styles.closed]: !isReviewOpened
 			})}>
-				{product.reviews.map(r => <Revie key={r._id} review={r} />)}
+				{product.reviews.map(r => (
+					<div key={r._id}>
+						<Review review={r} />
+						<Divider />
+					</div>
+				))}
+				<ReviewForm productId={product._id} />
 			</Card>
 		</>	
 	);
