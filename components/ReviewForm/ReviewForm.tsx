@@ -11,7 +11,7 @@ import { IReviewForm } from "./ReviewForm.interface";
 
 export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps): JSX.Element => {
 
-	const { register, control, handleSubmit } = useForm<IReviewForm>();
+	const { register, control, handleSubmit, formState: { errors } } = useForm<IReviewForm>();
 
 	const onSubmit = (data: IReviewForm) => {
 		console.log(data);
@@ -21,12 +21,24 @@ export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps):
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className={cn(styles.reviewForm, className)} {...props}>
 				<Input
-					{...register('name')}
+					{...register('name', {
+						required: {
+							value: true,
+							message: 'Заполните имя'
+						}
+					})}
+					error={errors.name}
 					placeholder="Имя"
 				/>
 				<Input
-					{...register('title')}
+					{...register('title', {
+						required: {
+							value: true,
+							message: 'Укажите заголовок'
+						}
+					})}
 					className={styles.title}
+					error={errors.title}
 					placeholder="Заголовок отзыва"
 				/>
 				<div className={styles.rating}>
@@ -34,13 +46,25 @@ export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps):
 					<Controller
 						control={control}
 						name="rating"
+						rules={{
+							required: {
+								value: true,
+								message: 'Поставьте оценку'
+							}
+						}}
 						render={({ field }) => (
-							<Rating isEditable rating={field.value} ref={field.ref} setRating={field.onChange} />
+							<Rating isEditable rating={field.value} error={errors.rating} ref={field.ref} setRating={field.onChange} />
 						)}
 					/>
 				</div>
 				<TextArea
-					{...register('description')}
+					{...register('description', {
+						required: {
+							value: true,
+							message: 'Пожалуйста, напишите свой отзыв'
+						}
+					})}
+					error={errors.description}
 					className={styles.description}
 					placeholder="Текст отзыва"
 				/>
