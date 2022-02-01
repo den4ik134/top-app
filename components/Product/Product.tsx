@@ -1,6 +1,6 @@
 import { ProductProps } from "./Product.props";
 import cn from 'classnames';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import styles from './Product.module.css';
 import { Card } from "../Card/Card";
 import { Rating } from "../Rating/Rating";
@@ -14,9 +14,18 @@ import { ReviewForm } from "../ReviewForm/ReviewForm";
 
 export const Product = ({ product, className, ...props }: ProductProps): JSX.Element => {
 	const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
+	const reviewRef = useRef<HTMLDivElement>(null);
+
+	const scrollToReview = () => {
+		setIsReviewOpened(true);
+		reviewRef.current?.scrollIntoView({
+			behavior: 'smooth',
+			block: 'start'
+		});
+	};
 
 	return (
-		<>
+		<div className={cn(className)} {...props}>
 			<Card className={styles.product}>
 				<div
 					className={styles.logo}
@@ -63,7 +72,9 @@ export const Product = ({ product, className, ...props }: ProductProps): JSX.Ele
 				<div className={styles.creditTitle}>кредит</div>
 
 				<div className={styles.rateTitle}>
-					{product.reviewCount} {declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
+					<a href="#ref" onClick={scrollToReview}>
+						{product.reviewCount} {declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
+					</a>
 				</div>
 
 				<Divider className={styles.hr} />
@@ -110,10 +121,14 @@ export const Product = ({ product, className, ...props }: ProductProps): JSX.Ele
 					</Button>
 				</div>
 			</Card>
-			<Card color='blue' className={cn(styles.reviews, {
-				[styles.opened]: isReviewOpened,
-				[styles.closed]: !isReviewOpened
-			})}>
+			<Card
+				color='blue'
+				className={cn(styles.reviews, {
+					[styles.opened]: isReviewOpened,
+					[styles.closed]: !isReviewOpened
+				})}
+				ref={reviewRef}
+			>
 				{product.reviews.map(r => (
 					<div key={r._id}>
 						<Review review={r} />
@@ -122,6 +137,6 @@ export const Product = ({ product, className, ...props }: ProductProps): JSX.Ele
 				))}
 				<ReviewForm productId={product._id} />
 			</Card>
-		</>	
+		</div>	
 	);
 };

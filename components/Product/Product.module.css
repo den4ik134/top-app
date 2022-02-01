@@ -154,18 +154,19 @@
 .characteristicsValue {
 	font-weight: 500;
 }
-
-.reviews {}
-
 .closed {
 	overflow: hidden;
 	padding: 0;
-	max-width: 0;
+	max-height: 0;
 }
 
 .opened {
 	padding: 30px;
-	max-width: auto;
+	max-height: auto;
+	}
+
+	.rateTitle a {
+		color: var(--primary);
 }
 
 @media screen and (max-width: 1320px) {
