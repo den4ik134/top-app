@@ -3,6 +3,10 @@
 	width: 100%;
 }
 
+.input input {
+	width: 100%;
+}
+
 .button {
 	position: absolute;
 	right: 3px;
