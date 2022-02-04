@@ -8,9 +8,9 @@
 
 	font-size: 18px;
 	font-weight: 500;
-	line-height: 25px;
 	grid-template-columns: 24px 1fr;
 	gap: 20px;
+	outline-offset: -1px;
 }
 
 .firstLevelActive,
@@ -33,7 +33,7 @@
 
 	font-size: 12px;
 	font-weight: 300;
-	line-height: 16px;
+	outline-offset: -1px;
 }
 
 .secondBlock {
@@ -59,7 +59,7 @@
 
 	font-size: 14px;
 	font-weight: 500;
-	line-height: 19px;
+	outline-offset: -1px;
 }
 
 .thirdLevelActive,

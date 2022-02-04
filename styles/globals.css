@@ -24,13 +24,13 @@ a {
 :root {
 	--black: #3B434E;
 	--gray-light: #EBEBEB;
-	--gray-dark: #787D85;
+	--gray-dark: #6c7077;
 	--white: white;
-	--primary: #7653FC;
+	--primary: #7351f5;
 	--primary-hover: #583DC2;
 	--red: #FC836D;
 	--red-light: #ffb6a7;
-	--green: #1DC37E;
+	--green: #127a4f;
 	--green-light: #C8F8E4;
 	--font-family:
 		"Noto Sans Display",

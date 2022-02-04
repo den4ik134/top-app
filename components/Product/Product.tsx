@@ -1,6 +1,6 @@
 import { ProductProps } from "./Product.props";
 import cn from 'classnames';
-import { ForwardedRef, forwardRef, useRef, useState } from 'react';
+import { ForwardedRef, forwardRef, KeyboardEvent, useRef, useState } from 'react';
 import styles from './Product.module.css';
 import { Card } from "../Card/Card";
 import { Rating } from "../Rating/Rating";
@@ -23,6 +23,14 @@ export const Product = motion(forwardRef(({ product, className, ...props }: Prod
 			behavior: 'smooth',
 			block: 'start'
 		});
+		reviewRef.current?.focus();
+	};
+
+	const scrollToReviewOnKeyDown = (key: KeyboardEvent) => {
+		if (key.code == 'Space' || key.code == 'Enter') {
+			key.preventDefault();
+			scrollToReview();
+		}
 	};
 
 	const variants = {
@@ -84,7 +92,7 @@ export const Product = motion(forwardRef(({ product, className, ...props }: Prod
 				<div className={styles.creditTitle}>кредит</div>
 
 				<div className={styles.rateTitle}>
-					<a href="#ref" onClick={scrollToReview}>
+					<a href="#ref" onClick={scrollToReview} onKeyDown={scrollToReviewOnKeyDown}>
 						{product.reviewCount} {declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
 					</a>
 				</div>
@@ -142,6 +150,7 @@ export const Product = motion(forwardRef(({ product, className, ...props }: Prod
 					color='blue'
 					className={styles.reviews}
 					ref={reviewRef}
+					tabIndex={isReviewOpened ? 0 : -1}
 				>
 					{product.reviews.map(r => (
 						<div key={r._id}>
@@ -149,7 +158,7 @@ export const Product = motion(forwardRef(({ product, className, ...props }: Prod
 							<Divider />
 						</div>
 					))}
-					<ReviewForm productId={product._id} />
+					<ReviewForm productId={product._id} isOpened={isReviewOpened} />
 				</Card>
 			</motion.div>
 		</div>	
