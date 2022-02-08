@@ -65,19 +65,26 @@ export const Product = motion(forwardRef(({ product, className, ...props }: Prod
 				<div
 					className={styles.price}
 				>
-					{numSplitter(product.price, true)}
-					{product.oldPrice && <Tag color='green' className={styles.oldPrice}>{numSplitter(product.price - product.oldPrice, true)}</Tag>}
+					<span><span className="visualyHidden">Цена</span>{numSplitter(product.price, true)}</span>
+					{product.oldPrice && <Tag color='green' className={styles.oldPrice}>
+						<span className="visualyHidden">Скидка</span>
+						{numSplitter(product.price - product.oldPrice, true)}
+					</Tag>}
 				</div>
 
 				<div
 					className={styles.credit}
 				>
+					<span className="visualyHidden">Кредит</span>
 					{numSplitter(product.credit, true)}<span>/мес</span>
 				</div>
 
 				<div
 					className={styles.rating}
 				>
+					<span className="visualyHidden">
+						{'Рейтинг' + (product.reviewAvg ?? product.initialRating) + 'звёзд'}
+					</span>
 					<Rating rating={product.reviewAvg ?? product.initialRating} />
 				</div>
 
@@ -87,9 +94,9 @@ export const Product = motion(forwardRef(({ product, className, ...props }: Prod
 					{product.categories.map(c => <Tag key={c} className={styles.category} color='ghost'>{c}</Tag>)}
 				</div>
 
-				<div className={styles.priceTitle}>цена</div>
+				<div className={styles.priceTitle} aria-hidden="true">цена</div>
 
-				<div className={styles.creditTitle}>кредит</div>
+				<div className={styles.creditTitle} aria-hidden="true">кредит</div>
 
 				<div className={styles.rateTitle}>
 					<a href="#ref" onClick={scrollToReview} onKeyDown={scrollToReviewOnKeyDown}>
@@ -136,6 +143,7 @@ export const Product = motion(forwardRef(({ product, className, ...props }: Prod
 						arrow={!isReviewOpened ? 'right' : 'down'}
 						className={styles.reviewButton}
 						onClick={() => setIsReviewOpened(!isReviewOpened)}
+						aria-expended={isReviewOpened}
 					>
 						Читать отзывы
 					</Button>
