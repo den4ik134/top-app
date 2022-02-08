@@ -1,20 +1,21 @@
-
 .firstLevel {
 	display: grid;
 	align-items: center;
 
 	margin-top: 20px;
 
+	outline-offset: -1px;
+
 	font-size: 18px;
 	font-weight: 500;
 	grid-template-columns: 24px 1fr;
 	gap: 20px;
-	outline-offset: -1px;
 }
 
 .firstLevelList {
-	list-style: none;
 	padding: 0;
+
+	list-style: none;
 }
 
 .firstLevelActive,
@@ -31,15 +32,17 @@
 	margin-bottom: 10px;
 	padding: 0;
 
-	text-transform: uppercase;
-	border: none;
-	background-color: transparent;
 	cursor: pointer;
+
+	text-transform: uppercase;
+
 	color: var(--gray-dark);
+	border: none;
+	outline-offset: -1px;
+	background-color: transparent;
 
 	font-size: 12px;
 	font-weight: 300;
-	outline-offset: -1px;
 }
 
 .secondBlock {
@@ -47,14 +50,17 @@
 	margin-left: 12px;
 	padding-left: 0 0 0 32px;
 
-	border-left: 1px solid #DFDFDF;
 	list-style: none;
+
+	border-left: 1px solid #DFDFDF;
 }
 
 .secondLevelBlock {
 	overflow: hidden;
-	list-style: none;
+
 	padding: 0;
+
+	list-style: none;
 }
 
 .thirdLevel {
@@ -65,10 +71,10 @@
 	cursor: pointer;
 
 	color: var(--gray-dark);
+	outline-offset: -1px;
 
 	font-size: 14px;
 	font-weight: 500;
-	outline-offset: -1px;
 }
 
 .thirdLevelActive,

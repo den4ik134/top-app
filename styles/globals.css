@@ -22,22 +22,24 @@ a {
 	box-sizing: border-box;
 }
 .visualyHidden {
+	position: absolute;
+
+	overflow: hidden;
+
 	width: 0;
 	height: 0;
-	overflow: hidden;
-	position: absolute;
 }
 
 :root {
 	--black: #3B434E;
 	--gray-light: #EBEBEB;
-	--gray-dark: #6c7077;
+	--gray-dark: #6C7077;
 	--white: white;
-	--primary: #7351f5;
+	--primary: #7351F5;
 	--primary-hover: #583DC2;
 	--red: #FC836D;
-	--red-light: #ffb6a7;
-	--green: #127a4f;
+	--red-light: #FFB6A7;
+	--green: #127A4F;
 	--green-light: #C8F8E4;
 	--font-family:
 		"Noto Sans Display",

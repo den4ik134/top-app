@@ -44,9 +44,9 @@ export const Rating = forwardRef(({ isEditable = false, rating, setRating, error
 					role={isEditable ? "slider" : ""}
 					aria-valuenow={rating}
 					aria-invalid={error ? true : false}
-					aria-valuemax={'5'}
+					aria-valuemax={5}
 					aria-label={isEditable ? 'Укажите рейтинг стрелками вверх или вниз' : ('рейтинг' + rating)}
-					aria-valuemin={'1'}
+					aria-valuemin={1}
 				>
 					<StarIcon />
 				</span>

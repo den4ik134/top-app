@@ -4,7 +4,7 @@ import styles from './Search.module.css';
 import { Input } from "../Input/Input";
 import { Button } from "../Button/Button";
 import SearchIcon from './search.svg';
-import { useState } from "react";
+import { useState, KeyboardEvent } from "react";
 import { useRouter } from "next/router";
 
 export const Search = ({ className, ...props }: SearchProps): JSX.Element => {

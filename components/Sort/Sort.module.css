@@ -3,12 +3,14 @@
 }
 
 .active {
-	font-weight: bold;
 	color: var(--primary);
+
+	font-weight: bold;
 }
 
 .active .sortIcon {
 	display: block;
+
 	margin-right: 8px;
 }
 
@@ -21,9 +23,12 @@
 .sortButton {
 	display: grid;
 	grid-template-columns: 20px 1fr;
+
 	align-items: center;
 	gap: 8px;
+
 	cursor: pointer;
+
 	border: none;
 	background-color: transparent;
 }
@@ -31,6 +36,7 @@
 .sortButton:not(.active) {
 	grid-template-columns: 1fr;
 }
+
 .sortname {
 	display: none;
 }
