@@ -12,9 +12,9 @@ import axios from "axios";
 import { API } from "../../helpers/api";
 import { useState } from "react";
 
-export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps): JSX.Element => {
+export const ReviewForm = ({ productId, isOpened, className, ...props }: ReviewFormProps): JSX.Element => {
 
-	const { register, control, handleSubmit, formState: { errors }, reset } = useForm<IReviewForm>();
+	const { register, control, handleSubmit, formState: { errors }, reset, clearErrors } = useForm<IReviewForm>();
 	const [isSuccess, setIsSuccess] = useState<boolean>(false);
 	const [error, setIsError] = useState<string>();
 
@@ -47,6 +47,8 @@ export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps):
 					})}
 					error={errors.name}
 					placeholder="Имя"
+					tabIndex={isOpened ? 0 : -1}
+					aria-invalid={errors.name ? true : false}
 				/>
 				<Input
 					{...register('title', {
@@ -58,6 +60,8 @@ export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps):
 					className={styles.title}
 					error={errors.title}
 					placeholder="Заголовок отзыва"
+					tabIndex={isOpened ? 0 : -1}
+					aria-invalid={errors.title ? true : false}
 				/>
 				<div className={styles.rating}>
 					<span>Оценка:</span>
@@ -71,7 +75,14 @@ export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps):
 							}
 						}}
 						render={({ field }) => (
-							<Rating isEditable rating={field.value} error={errors.rating} ref={field.ref} setRating={field.onChange} />
+							<Rating
+								isEditable
+								rating={field.value}
+								error={errors.rating}
+								ref={field.ref}
+								setRating={field.onChange}
+								tabIndex={isOpened ? 0 : -1}
+							/>
 						)}
 					/>
 				</div>
@@ -85,22 +96,51 @@ export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps):
 					error={errors.description}
 					className={styles.description}
 					placeholder="Текст отзыва"
+					tabIndex={isOpened ? 0 : -1}
+					aria-label="Текст отзыва"
+					aria-invalid={errors.description ? true : false}
 				/>
 				<div className={styles.submit}>
-					<Button className={styles.button} appearance='primary'>Отправить</Button>
+					<Button
+						className={styles.button}
+						appearance='primary'
+						tabIndex={isOpened ? 0 : -1}
+						onClick={() => clearErrors()}
+					>
+						Отправить
+					</Button>
 					<span className={styles.info}>* Перед публикацией отзыв пройдет предварительную модерацию и проверку</span>
 				</div>
 			</div>
-			{isSuccess && <div className={cn(styles.panel, styles.success)}>
-				<div className={styles.successTitle}>Ваш отзыв отправлен.</div>
+			{isSuccess && <div className={cn(styles.panel, styles.success)} role='alert'>
+				<div
+					className={styles.successTitle}
+				>
+					Ваш отзыв отправлен.
+				</div>
 				<div className={styles.successDescription}>
 					Спасибо, ваш отзыв будет опубликован после проверки!
 				</div>
-				<CloseIcon className={styles.close} onClick={() => setIsSuccess(false)} />
+				<button
+					className={styles.close}
+					onClick={() => setIsSuccess(false)}
+					aria-label="Закрыть оповещение"
+				>
+					<CloseIcon />
+				</button>
 			</div>}
-			{error && <div className={cn(styles.panel, styles.error)}>
+			{error && <div
+				className={cn(styles.panel, styles.error)}
+				role="alert"
+			>
 				Что-то пошло не так, попробуйте обновить страницу!
-				<CloseIcon className={styles.close} onClick={() => setIsError(undefined)} />
+				<button
+					className={styles.close}
+					onClick={() => setIsError(undefined)}
+					aria-label="Закрыть оповещение"
+				>
+					<CloseIcon />
+				</button>
 			</div>}
 		</form>
 	);
