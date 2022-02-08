@@ -1,5 +1,4 @@
 import { HhDataProps } from "./HhData.props";
-import cn from 'classnames';
 import RateIcon from './rate.svg';
 import styles from './HhData.module.css';
 import { Card } from "../Card/Card";

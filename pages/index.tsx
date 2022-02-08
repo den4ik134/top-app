@@ -1,27 +1,14 @@
 import { GetStaticProps } from "next";
-import { useState } from "react";
-import { Button, Htag, Ptag, Tag, Rating, Input, TextArea, Product } from "../components";
 import { WithLayout } from "../layout/Layout";
 import axios from 'axios';
 import { MenuItem } from "../interfaces/menu.interface";
 import { API } from "../helpers/api";
 
 function Home({ menu, firstCategory }: HomeProps): JSX.Element {
-	const [rating, setRating] = useState<number>(4);
 
 	return (
 		<>
-			<Htag tag='h2'>Text</Htag>
-			<Button appearance="primary" arrow="right">Text</Button>
-			<Button appearance="ghost" arrow="down">Text</Button>
 
-			<Tag size="s">adawda</Tag>
-			<Tag href="#" size="m" color="red">fseefs</Tag>
-			<Tag size="m" color="primary">afeaf</Tag>
-			<Tag href="#" color="green">awdada</Tag>
-			<Rating rating={rating} isEditable setRating={setRating} />
-			<Input placeholder="Имя" />
-			<TextArea placeholder="Текст отзыва" />
 		</>
 	);
 }

@@ -13,7 +13,10 @@ export const firstLevelMenu: FirstLevelMenuItem[] = [
 	{ route: 'products', name: 'Продукты', icon: <ProductsIcon />, id: TopLevelCategory.Products },
 ];
 
-export const numSplitter = (num: number, ruSymbol = true): string => {
+export const numSplitter = (num: (number | undefined), ruSymbol = true): string => {
+	if (num == undefined) {
+		return 'Цена не указана';
+	}
 	const res = num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 	if (!ruSymbol) {
 		return res;

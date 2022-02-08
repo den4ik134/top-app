@@ -10,6 +10,7 @@
 		"indentation": [
 			"tab"
 		],
+		"max-line-length": 200,
 		"color-hex-case": "upper",
 		"no-missing-end-of-source-newline": null,
 		"font-family-name-quotes": null,
